@@ -3,7 +3,7 @@
 #include <stdio.h>
 
 const int BTN_PIN = 11;
-const int LED_PIN = 5;
+const int LED_PIN = 28;
 const int BOBINA1 = 16;
 const int BOBINA2 = 17;
 const int BOBINA3 = 15;
@@ -32,20 +32,22 @@ int main() {
 
   while (true) {
     if (!gpio_get(BTN_PIN)){
+      gpio_put(LED_PIN,1);
       for (int i = 0; i < 512; i++){
         gpio_put(BOBINA1, 1);
-        sleep_ms(70);
+        sleep_ms(10);
         gpio_put(BOBINA1, 0);
         gpio_put(BOBINA2, 1);
-        sleep_ms(70);
+        sleep_ms(10);
         gpio_put(BOBINA2, 0);
         gpio_put(BOBINA3, 1);
-        sleep_ms(70);
+        sleep_ms(10);
         gpio_put(BOBINA3, 0);
         gpio_put(BOBINA4, 1);
-        sleep_ms(70);
+        sleep_ms(10);
         gpio_put(BOBINA4, 0);
       }
+      gpio_put(LED_PIN,0);
     }
   }
 }
